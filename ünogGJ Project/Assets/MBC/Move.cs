@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+
+    private int hitPoint;
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -66,7 +69,7 @@ public class Move : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-
+        hitPoint = 1;
     }
     private void Update()
     {
@@ -269,5 +272,12 @@ public class Move : MonoBehaviour
         }
     }
 
-
+    private void setHitPoint(int dmg)
+    {
+        hitPoint -= dmg;
+        if(hitPoint <= 0)
+        {
+            //gameover
+        }
+    }
 }

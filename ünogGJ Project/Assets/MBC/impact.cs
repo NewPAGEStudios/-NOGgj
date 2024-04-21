@@ -9,6 +9,7 @@ public class impact : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 normalOfImpactSurface;
 
+    float dmg;
 
     private void Start()
     {
@@ -16,15 +17,6 @@ public class impact : MonoBehaviour
         rb.AddForce(gameObject.transform.forward * 300f);
         //look forward to spawn trail
     }
-    private void Update()
-    {
-    }
-    //Melee attack
-    private void newRaycast()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("duvar") || other.transform.CompareTag("Ground"))
@@ -37,6 +29,10 @@ public class impact : MonoBehaviour
                 {
                     normalOfImpactSurface = hits[c].normal;
                     break;
+                }
+                else if (hits[c].transform.CompareTag("Enemy"))
+                {
+//                    hits[c].transform.GetComponent<Enemy>().setHitPoint(dmg);
                 }
             }
             rb.velocity = Vector3.zero;
