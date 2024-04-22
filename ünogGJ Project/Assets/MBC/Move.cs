@@ -7,6 +7,8 @@ public class Move : MonoBehaviour
 
     private int hitPoint;
 
+    public AudioSource gunS;
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -253,6 +255,7 @@ public class Move : MonoBehaviour
     {
         if (Input.GetKeyDown(fireKey))
         {
+            gunS.Play();
             Instantiate(bullet, fpsLoc.position, fpsLoc.rotation);
         }
     }
@@ -272,12 +275,8 @@ public class Move : MonoBehaviour
         }
     }
 
-    private void setHitPoint(int dmg)
+    public void gameover()
     {
-        hitPoint -= dmg;
-        if(hitPoint <= 0)
-        {
-            //gameover
-        }
+        Debug.Log("You ARE dEAD");
     }
 }

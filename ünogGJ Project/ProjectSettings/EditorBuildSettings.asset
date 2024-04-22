@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/YEC/Scenes/MainMenu.unity
+    guid: cef0193a81de49e40b6a240fd408f1c7
+  - enabled: 1
+    path: Assets/Scenes/dene1.unity
+    guid: 18f4ba54a5ed6e146b948e91c205f4b0
   m_configObjects: {}

@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class AI2 : MonoBehaviour
 {
-   public Transform target;
+    private float hitPoint = 100;
+
+    public Transform target;
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float fireRate = 1.0f;
@@ -13,12 +15,17 @@ public class AI2 : MonoBehaviour
 
     public LayerMask obstacleLayer;
     private NavMeshAgent agent;
+
+    private float mermiAtTime = 3;
+
     private bool isPlayerInArea = false;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        target = GameObject.FindWithTag("Player").transform;
         agent.SetDestination(target.position);
+        hitPoint = 140;
     }
 
     // Update is called once per frame
@@ -37,12 +44,28 @@ public class AI2 : MonoBehaviour
             else
             {
                 isPlayerInArea = false;
-                // agent.SetDestination(target.position);
                 agent.ResetPath();
+                if (mermiAtTime <= 0)
+                {
+                    // agent.SetDestination(target.position);
+                    mermiAtTime = 3;
+                    MermiAt();
+                }
+                else
+                {
+                    mermiAtTime -= Time.deltaTime;
+                }
             }
         }
     }
-
+    public void takeDmg(float dmg)
+    {
+        hitPoint -= dmg;
+        if (hitPoint <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     void MermiAt()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);

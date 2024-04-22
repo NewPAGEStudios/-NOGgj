@@ -14,12 +14,12 @@ public class Mele : MonoBehaviour
                 other.transform.parent.GetComponent<Rigidbody>().AddForce(15 * transform.parent.forward, ForceMode.Impulse);
                 other.GetComponent<Throwable>().
 
-                transform.parent.GetComponent<Move>().meleePressed = false;
+                GetComponent<Move>().meleePressed = false;
             }
             else if (other.CompareTag("Enemy"))
             {
                 Debug.Log("GO");
-                other.transform.parent.GetComponent<Rigidbody>().AddForce(15 * transform.parent.forward, ForceMode.Impulse);
+                other.GetComponent<Rigidbody>().AddForce(15 * transform.parent.forward, ForceMode.Impulse);
 
                 transform.parent.GetComponent<Move>().meleePressed = false;
             }

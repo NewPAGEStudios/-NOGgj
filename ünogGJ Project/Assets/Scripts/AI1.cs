@@ -11,12 +11,15 @@ public class AI1 : MonoBehaviour
     public float fireRate = 1.0f;
     public float shootingDistance = 10f;
 
+    private float hitpoint=150;
+    
     public LayerMask obstacleLayer;
     private UnityEngine.AI.NavMeshAgent agent;
     private bool isPlayerInArea = false;
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.SetDestination(target.position);
     }
@@ -29,5 +32,21 @@ public class AI1 : MonoBehaviour
 
       
         
+    }
+
+    public void TakeDmg(float dmg)
+    {
+        if(hitpoint <= 0)
+        {
+            Destroy(gameObject);
+        }
+        hitpoint -= dmg;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+
+        }
     }
 }
